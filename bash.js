@@ -3,7 +3,12 @@ const lsCmd = require('./ls')
 const catCmd = require('./cat')
 const curlCmd = require('./curl')
 
-require('./pwd.js')
+// Done callback function
+const done = output => {
+  process.stdout.write('\n')
+  process.stdout.write(output)
+  process.stdout.write("\nprompt > ")
+}
 
 // Output a prompt
 process.stdout.write('prompt > ')
@@ -16,12 +21,12 @@ process.stdin.on('data', (data) => {
   process.stdout.write('You typed: ' + cmd);
 
   if (cmd === 'pwd') {
-    runPwdCmd()
+    runPwdCmd(done)
   } else if (cmd === 'ls') {
-    lsCmd()
+    lsCmd(done)
   } else if (cmd === 'cat') {
-    catCmd(inputs[1])
+    catCmd(done, inputs[1])
   } else if (cmd === 'curl') {
-    curlCmd(inputs[1])
+    curlCmd(done, inputs[1])
   }
 })

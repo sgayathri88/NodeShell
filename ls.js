@@ -1,13 +1,11 @@
 const fs = require('fs')
 
-const lsCmd = () => {
+const lsCmd = (done) => {
   fs.readdir('./', 'utf8', (err, files) => {
     if (err) {
       throw err
     } else {
-      process.stdout.write('\n')
-      process.stdout.write(files.join('\n'))
-      process.stdout.write("\nprompt > ")
+      done(files.join('\n'))
     }
   })
 }

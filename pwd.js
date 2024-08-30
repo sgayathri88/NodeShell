@@ -1,7 +1,5 @@
-const runPwdCmd = () => {
-  process.stdout.write('\n')
-  process.stdout.write(process.cwd())
-  process.stdout.write('\nprompt > ')
+const runPwdCmd = (done) => {
+  done(process.cwd())
 }
 
 module.exports = runPwdCmd

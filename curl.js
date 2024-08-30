@@ -1,11 +1,9 @@
 const request = require('request')
 
-const curlCmd = urlStr => {
+const curlCmd = (done, urlStr) => {
   request(urlStr, (err, response, body) => {
     if (err) throw err;
-    process.stdout.write('\n')
-    process.stdout.write(body)
-    process.stdout.write("\nprompt > ")
+    done(body)
   });
 }
 
