@@ -1,5 +1,6 @@
 const runPwdCmd = require('./pwd');
 const lsCmd = require('./ls')
+const catCmd = require('./cat')
 
 require('./pwd.js')
 
@@ -8,7 +9,8 @@ process.stdout.write('prompt > ')
 
 // The stdin 'data' event fires after a user types in a line
 process.stdin.on('data', (data) => {
-  const cmd = data.toString().trim(); // remove the newline
+  const inputs = data.toString().trim().split(' ');
+  const cmd = inputs[0]
 
   process.stdout.write('You typed: ' + cmd);
 
@@ -16,5 +18,7 @@ process.stdin.on('data', (data) => {
     runPwdCmd()
   } else if (cmd === 'ls') {
     lsCmd()
+  } else if (cmd === 'cat') {
+    catCmd(inputs[1])
   }
 })
