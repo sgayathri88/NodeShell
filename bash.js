@@ -1,6 +1,7 @@
 const runPwdCmd = require('./pwd');
 const lsCmd = require('./ls')
 const catCmd = require('./cat')
+const curlCmd = require('./curl')
 
 require('./pwd.js')
 
@@ -20,5 +21,7 @@ process.stdin.on('data', (data) => {
     lsCmd()
   } else if (cmd === 'cat') {
     catCmd(inputs[1])
+  } else if (cmd === 'curl') {
+    curlCmd(inputs[1])
   }
 })
